@@ -1,9 +1,9 @@
-# 🚀 LMS Full Stack Application
+# LMS Full Stack Application
 
-## 🔥 Project Overview
+## Project Overview
 This is a Full Stack Learning Management System (LMS) application deployed on AWS EC2 using Nginx and HTTPS.
 
-## 🛠 Tech Stack
+##  Tech Stack
 - Frontend: React + Vite
 - Backend: Node.js + Express
 - Server: AWS EC2 (Ubuntu)
@@ -11,10 +11,10 @@ This is a Full Stack Learning Management System (LMS) application deployed on AW
 - SSL: Let's Encrypt (Certbot)
 - Version Control: Git & GitHub
 
-## 🌐 Live Application
+## Live Application
 https://harishdev.com
 
-## ⚙️ Deployment Steps
+## Deployment Steps
 1. Setup EC2 instance
 2. Install Node.js and Nginx
 3. Configure reverse proxy
@@ -23,12 +23,12 @@ https://harishdev.com
 6. Build frontend
 7. Deploy backend service
 
-## 💡 Key Features
+## Key Features
 - HTTPS enabled
 - Reverse proxy configuration
 - Production build deployment
 - Environment variable configuration
 - GitHub version control
 
-## 👨‍💻 Author
+## Author
 Harish Pasupunuti
