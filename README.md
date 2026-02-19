@@ -30,5 +30,10 @@ https://harishdev.com
 - Environment variable configuration
 - GitHub version control
 
+
+## 🏗 Architecture Diagram
+
+![LMS Architecture](lms%20ec2%20architecture.png)
+
 ## Author
 Harish Pasupunuti
