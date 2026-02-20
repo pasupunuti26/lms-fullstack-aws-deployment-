@@ -35,5 +35,9 @@ https://harishdev.com
 
 ![LMS Architecture](lms%20ec2%20architecture.png)
 
+## 📸 Application Screenshot
+
+![LMS Application](docs/lmsapplication.png)
+
 ## Author
 Harish Pasupunuti
