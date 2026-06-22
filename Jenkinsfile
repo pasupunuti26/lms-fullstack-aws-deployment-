@@ -2,7 +2,6 @@
 pipeline {
 agent any
 
-```
 environment {
     NEXUS_CRED = credentials('nexus')
 }
@@ -63,6 +62,4 @@ post {
         echo 'Pipeline Failed'
     }
 }
-```
-
 }
