@@ -1,4 +1,3 @@
-
 pipeline {
 agent any
 
@@ -24,6 +23,7 @@ stages {
             echo 'Running SonarQube Analysis...'
             sh '''
                 cd webapp
+
                 sudo docker run --rm \
                 -e SONAR_HOST_URL="http://3.144.31.52:9000" \
                 -e SONAR_LOGIN="sqp_3af4b8d3a47a75887c1a7f3180171bc5a17fb6dc" \
@@ -45,7 +45,8 @@ stages {
 
                 zip -r dist-${BUILD_NUMBER}.zip dist
 
-                curl -v -u ${NEXUS_CRED_USR}:${NEXUS_CRED_PSW} \
+                curl -v \
+                -u ${NEXUS_CRED_USR}:${NEXUS_CRED_PSW} \
                 --upload-file dist-${BUILD_NUMBER}.zip \
                 http://3.144.31.52:8081/repository/lms/dist-${BUILD_NUMBER}.zip
             '''
