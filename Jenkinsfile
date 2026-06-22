@@ -29,7 +29,7 @@ stages {
                 -e SONAR_LOGIN="sqp_3af4b8d3a47a75887c1a7f3180171bc5a17fb6dc" \
                 -v $(pwd):/usr/src \
                 sonarsource/sonar-scanner-cli \
-                -Dsonar.projectKey=lms
+                -Dsonar.projectKey=LMS-Project
             '''
         }
     }
