@@ -25,7 +25,7 @@ stages {
                 cd webapp
 
                 sudo docker run --rm \
-                -e SONAR_HOST_URL="http://3.144.31.52:9000" \
+                -e SONAR_HOST_URL="http://3.22.61.233:9000" \
                 -e SONAR_LOGIN="sqp_b8ab77b7c1bf20f23f6b63330c0ae397eef19f23" \
                 -v $(pwd):/usr/src \
                 sonarsource/sonar-scanner-cli \
@@ -48,7 +48,7 @@ stages {
                 curl -v \
                 -u ${NEXUS_CRED_USR}:${NEXUS_CRED_PSW} \
                 --upload-file dist-${BUILD_NUMBER}.zip \
-                http://3.144.31.52:8081/repository/lms/dist-${BUILD_NUMBER}.zip
+                http://3.22.61.233:8081/repository/lms/dist-${BUILD_NUMBER}.zip
             '''
         }
     }
