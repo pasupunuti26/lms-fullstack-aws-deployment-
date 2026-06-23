@@ -26,7 +26,7 @@ stages {
 
                 sudo docker run --rm \
                 -e SONAR_HOST_URL="http://3.22.61.233:9000" \
-                -e SONAR_LOGIN="sqp_b8ab77b7c1bf20f23f6b63330c0ae397eef19f23" \
+                -e SONAR_LOGIN="SONAR-TOKEN" \
                 -v $(pwd):/usr/src \
                 sonarsource/sonar-scanner-cli \
                 -Dsonar.projectKey=LMS-Project-
