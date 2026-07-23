@@ -10,7 +10,7 @@ pipeline {
                 cd webapp
                 docker run --rm \
                 -e SONAR_HOST_URL="http://3.133.130.98:9000" \
-                -e SONAR_TOKEN="sqp_15cb5716e41c9ab9bd211b67cb5d585c861c747e" \
+                -e SONAR_TOKEN="sqp_73a9923922cb60694f9c14924872baf3b59d781f" \
                 -v "$PWD:/usr/src" \
                 sonarsource/sonar-scanner-cli \
                 -Dsonar.projectKey=LMS-Project \
