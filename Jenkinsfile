@@ -65,7 +65,60 @@ pipeline {
                 }
             }
         }
+
+        stage('Build Docker Images') {
+            steps {
+                echo "Building Docker Images"
+
+                sh '''
+                docker build -t pasupunuti26/lms-fe:${BUILD_NUMBER} ./webapp
+                docker build -t pasupunuti26/lms-be:${BUILD_NUMBER} ./api
+
+                docker tag pasupunuti26/lms-fe:${BUILD_NUMBER} pasupunuti26/lms-fe:latest
+                docker tag pasupunuti26/lms-be:${BUILD_NUMBER} pasupunuti26/lms-be:latest
+                '''
+            }
+        }
+
+        stage('Push Docker Images') {
+            steps {
+                echo "Pushing Docker Images"
+
+                withCredentials([usernamePassword(
+                    credentialsId: 'dockerhub',
+                    usernameVariable: 'DOCKER_USERNAME',
+                    passwordVariable: 'DOCKER_PASSWORD'
+                )]) {
+
+                    sh '''
+                    echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+
+                    docker push pasupunuti26/lms-fe:${BUILD_NUMBER}
+                    docker push pasupunuti26/lms-fe:latest
+
+                    docker push pasupunuti26/lms-be:${BUILD_NUMBER}
+                    docker push pasupunuti26/lms-be:latest
+
+                    docker logout
+                    '''
+                }
+            }
+        }
+
     }
-}    
 
+    post {
+        always {
+            echo "Cleaning Workspace..."
+            cleanWs()
+        }
 
+        success {
+            echo "Pipeline Executed Successfully."
+        }
+
+        failure {
+            echo "Pipeline Failed."
+        }
+    }
+}
