@@ -1,5 +1,5 @@
 # Docker file nodejs azure app services
-FROM node:18
+FROM node:18-bulleye
 # Create app directory
 WORKDIR /app
 # Install app dependencies
