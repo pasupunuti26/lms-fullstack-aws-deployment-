@@ -108,17 +108,11 @@ pipeline {
     }
 
     post {
-        always {
-            echo "Cleaning Workspace..."
-            cleanWs()
-        }
+    success {
+        echo "Pipeline Executed Successfully."
+    }
 
-        success {
-            echo "Pipeline Executed Successfully."
-        }
-
-        failure {
-            echo "Pipeline Failed."
-        }
+    failure {
+        echo "Pipeline Failed."
     }
 }
