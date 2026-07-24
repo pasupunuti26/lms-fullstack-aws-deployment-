@@ -108,11 +108,12 @@ pipeline {
     }
 
     post {
-    success {
-        echo "Pipeline Executed Successfully."
-    }
+        success {
+            echo "Pipeline Executed Successfully."
+        }
 
-    failure {
-        echo "Pipeline Failed."
+        failure {
+            echo "Pipeline Failed."
+        }
     }
 }
