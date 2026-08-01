@@ -9,7 +9,7 @@ pipeline {
                 sh '''
                 cd webapp
                 docker run --rm \
-                -e SONAR_HOST_URL="http://18.218.176.45:9000" \
+                -e SONAR_HOST_URL="http://3.144.47.99:9000" \
                 -e SONAR_TOKEN="sqp_0829039762e5fe4ab731878e0d0b4e8d447edb31" \
                 -v "$PWD:/usr/src" \
                 sonarsource/sonar-scanner-cli \
@@ -43,7 +43,7 @@ pipeline {
 
                     curl -v -u admin:nexus12345 \
                     --upload-file lms-${version}.zip \
-                    http://18.218.176.45:8081/repository/lms-project/lms-${version}.zip
+                    http://3.144.47.99:8081/repository/lms-project/lms-${version}.zip
                     """
                 }
             }
@@ -57,7 +57,7 @@ pipeline {
 
                     sh """
                     curl -u admin:nexus12345 -O \
-                    http://18.218.176.45:8081/repository/lms-project/lms-${version}.zip
+                    http://3.144.47.99:8081/repository/lms-project/lms-${version}.zip
 
                     sudo rm -rf /var/www/html/*
                     sudo unzip -o lms-${version}.zip -d /var/www/html/
@@ -105,6 +105,26 @@ pipeline {
             }
         }
 
+        stage('Deploy to Kubernetes') {
+            steps {
+                echo "Deploying to EKS"
+
+                sh '''
+                aws eks update-kubeconfig --region us-east-2 --name lms-eks-cluster
+
+                kubectl set image deployment/lms-fe \
+                frontend-container=pasupunuti26/lms-fe:${BUILD_NUMBER}
+
+                kubectl set image deployment/lms-be \
+                backend-container=pasupunuti26/lms-be:${BUILD_NUMBER}
+
+                kubectl rollout status deployment/lms-fe
+                kubectl rollout status deployment/lms-be
+
+                kubectl get pods
+                '''
+            }
+        }
     }
 
     post {
